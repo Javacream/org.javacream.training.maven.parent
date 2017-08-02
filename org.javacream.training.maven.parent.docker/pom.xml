@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>org.javacream.training.maven.parent.docker</artifactId>
-	<version>1.0</version>
+	<version>1.2.1</version>
 	<packaging>pom</packaging>
 	<parent>
 		<groupId>org.javacream.training.maven.parent</groupId>
@@ -11,16 +11,17 @@
 		<relativePath />
 	</parent>
 	<properties>
-		<docker.namespace.prefix>javacream</docker.namespace.prefix>
+		<docker.namespace.prefix>org.javacream</docker.namespace.prefix>
+		<docker.nexus.url>10.16.2.101:8083</docker.nexus.url>
 	</properties>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.11</version>
+				<version>1.0.0</version>
 				<configuration>
-					<imageName>${docker.namespace.prefix}/${project.artifactId}</imageName>
+					<imageName>${docker.nexus.url}/${docker.namespace.prefix}/${project.artifactId}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>
